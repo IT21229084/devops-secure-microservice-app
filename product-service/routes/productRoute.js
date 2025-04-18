@@ -32,6 +32,6 @@ productRouter.get('/single/:productId', singleProduct);
 productRouter.put('/update/:id', updateProduct);
 
 // Remove Product by ID
-// productRouter.delete('/remove/:productId', removeProduct);
+productRouter.delete('/remove/:productId', removeProduct);
 
 export default productRouter;
