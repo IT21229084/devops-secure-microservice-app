@@ -34,4 +34,6 @@ productRouter.put('/update/:id', updateProduct);
 // Remove Product by ID
 productRouter.delete('/remove/:productId', removeProduct);
 
+//for testing
+
 export default productRouter;
