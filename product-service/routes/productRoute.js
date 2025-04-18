@@ -35,5 +35,5 @@ productRouter.put('/update/:id', updateProduct);
 productRouter.delete('/remove/:productId', removeProduct);
 
 //for testing
-
+//d
 export default productRouter;
