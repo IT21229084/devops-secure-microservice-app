@@ -2,8 +2,10 @@ name: Docker Build and Push to Docker Hub
 
 on:
   push:
-    branches: [ "main" ]
-  tags: [ 'v*.*.*' ]
+    branches:
+      - main
+    tags:
+      - 'v*.*.*'
 
 env:
   REGISTRY: docker.io
@@ -51,5 +53,5 @@ jobs:
         uses: peter-evans/repository-dispatch@v3
         with:
           token: ${{ secrets.CD_REPO_ACCESS_TOKEN }}
-          repository: IT21229084/productservice-deployment  # 🔁 replace with your actual repo
+          repository: IT21229084/productservice-deployment
           event-type: trigger-deploy
