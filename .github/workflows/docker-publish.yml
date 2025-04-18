@@ -1,13 +1,9 @@
 name: Docker Build and Push to Docker Hub
 
 on:
-  schedule:
-    - cron: '25 2 * * *'  # Optional scheduled build
   push:
     branches: [ "main" ]
-    tags: [ 'v*.*.*' ]
-  pull_request:
-    branches: [ "main" ]
+  tags: [ 'v*.*.*' ]
 
 env:
   REGISTRY: docker.io
@@ -49,3 +45,11 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
+
+      - name: 🚀 Trigger CD pipeline in deployment repo
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        uses: peter-evans/repository-dispatch@v3
+        with:
+          token: ${{ secrets.CD_REPO_ACCESS_TOKEN }}
+          repository:IT21229084/productservice-deployment  # 🔁 replace with your actual repo
+          event-type: trigger-deploy
